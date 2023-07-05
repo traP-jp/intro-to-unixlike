@@ -1,10 +1,24 @@
-# Hello VitePress Tailwind
+---
+layout: home
 
-<div class="italic">Tailwind styling</div>
+hero:
+    name: "template"
+    text: "test template"
+    tagline: "講習会資料テンプレート"
+    image:
+        alt: "logo"
+        src: /assets/logo.png
+    actions:
+        - theme: brand
+          text: テキストを開く
+          link: /text/chapter-0/index.md
+        - theme: alt
+          text: このテキストについて
+          link: /about
 
-<div >sample</div>
+features:
+    - title: 0. 基本的な使い方について
+      details: 講習会資料を公開するまでの流れ
+      link: /text/chapter-0/index.md
 
-::: spoiler test
-naisyo
-:::
-
+---
