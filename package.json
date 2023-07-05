@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "install": "^0.13.0",
+    "@types/node": "^20.3.1",
+    "npm": "^9.7.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "prettier": "2.8.8",
