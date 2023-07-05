@@ -28,13 +28,6 @@ export default defineConfig({
             { icon: "github", link: "https://github.com/vuejs/vitepress" },
         ],
         sidebar: generateSidebar("../text"),
-        lastUpdated: {
-            text: "Updated at",
-            formatOptions: {
-                dateStyle: "full",
-                timeStyle: "medium",
-            },
-        },
         search: {
             provider: "local",
         },
