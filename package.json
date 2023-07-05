@@ -1,4 +1,8 @@
 {
+  "name": "vitepress-lecture-template",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
