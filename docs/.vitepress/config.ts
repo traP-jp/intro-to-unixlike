@@ -1,5 +1,7 @@
 import { defineConfig } from "vitepress";
 const containerMdExtend = require("./plugins/md/index.js");
+const fs = require("fs");
+const path = require("path");
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -26,7 +28,7 @@ export default defineConfig({
         socialLinks: [
             { icon: "github", link: "https://github.com/vuejs/vitepress" },
         ],
-        sidebar: generateSidebar("../text"),
+        sidebar: generateSidebar("../text", path.resolve(__dirname, "docs")),
         search: {
             provider: "local",
         },
@@ -39,11 +41,9 @@ interface SidebarItem {
     items?: SidebarItem[];
 }
 
-function generateSidebar(dir: string): SidebarItem[] {
-    const fs = require("fs");
-    const path = require("path");
-
+function generateSidebar(dir: string, baseDir: string): SidebarItem[] {
     const absoluteDir = path.resolve(__dirname, dir);
+    const relativeDir = path.relative(baseDir, absoluteDir);
 
     const sidebar: SidebarItem[] = [];
 
@@ -52,8 +52,7 @@ function generateSidebar(dir: string): SidebarItem[] {
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
-            const subDirPath = path.join(absoluteDir, file);
-            const subDirItems = generateSidebar(subDirPath);
+            const subDirItems = generateSidebar(filePath, baseDir);
             if (subDirItems.length > 0) {
                 sidebar.push({
                     text: file,
@@ -65,8 +64,11 @@ function generateSidebar(dir: string): SidebarItem[] {
             const titleMatch = content.match(/^#\s+(.*)/m);
 
             if (titleMatch) {
-                const relativePath = path.relative(absoluteDir, filePath);
-                const link = `/${path.join(dir,relativePath.replace(/\.md$/, ".html"))}`;
+                const relativePath = path.join(
+                    relativeDir,
+                    file.replace(/\.md$/, ".html")
+                );
+                const link = `/${relativePath}`;
                 sidebar.push({
                     text: titleMatch[1],
                     link,
@@ -74,5 +76,6 @@ function generateSidebar(dir: string): SidebarItem[] {
             }
         }
     });
+
     return sidebar;
 }
