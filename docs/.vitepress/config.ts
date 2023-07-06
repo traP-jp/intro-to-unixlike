@@ -6,7 +6,6 @@ export default defineConfig({
     lang: "jp",
     title: "Lecture Template Project",
     description: "Lecture Site Template",
-    base: "/template/",
     markdown: {
         lineNumbers: true,
         config: (md) => {
