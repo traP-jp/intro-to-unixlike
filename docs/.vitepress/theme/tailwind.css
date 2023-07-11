@@ -4,9 +4,7 @@
 
 @tailwind utilities;
 
-@layer base {
-}
-
+@layer base {}
 
 :root {
     /* light theme */
@@ -81,7 +79,7 @@
     --background-effect-light: #313136;
     --ui-line: theme(colors.stone.600/68%);
     --ui-line-fade: theme(colors.stone.600/32%);
-    --vp-c-base:theme(colors.primary-600);
+    --vp-c-base: theme(colors.primary-600);
     --vp-c-base-light: theme(colors.primary-500);
     --vp-c-base-lighter: theme(colors.primary-400);
     --vp-c-base-dark: theme(colors.primary-800);

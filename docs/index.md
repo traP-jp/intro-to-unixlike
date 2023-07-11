@@ -7,7 +7,7 @@ hero:
     tagline: "講習会資料テンプレート"
     image:
         alt: "logo"
-        src: /assets/logo.png
+        src: /assets/image/logo.png
     actions:
         - theme: brand
           text: テキストを開く

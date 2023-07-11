@@ -23,12 +23,12 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: "Home", link: "/" },
-            { text: "Examples", link: "/markdown-examples" },
+            { text: "Examples", link: "/text/Examples/image" },
         ],
         socialLinks: [
             { icon: "github", link: "https://github.com/vuejs/vitepress" },
         ],
-        sidebar: generateSidebar("../text", path.resolve(__dirname, "docs")),
+        sidebar: generateSidebar("text", "docs", "chapter"),
         search: {
             provider: "local",
         },
@@ -41,23 +41,45 @@ interface SidebarItem {
     items?: SidebarItem[];
 }
 
-function generateSidebar(dir: string, baseDir: string): SidebarItem[] {
-    const absoluteDir = path.resolve(__dirname, dir);
+function generateSidebar(
+    dir: string,
+    baseDir: string,
+    priorityFolder: string
+): SidebarItem[] {
+    const absoluteDir = path.resolve(baseDir, dir);
     const relativeDir = path.relative(baseDir, absoluteDir);
 
     const sidebar: SidebarItem[] = [];
+
+    // 優先フォルダのアイテムを格納する配列
+    const priorityItems: SidebarItem[] = [];
+
+    // 通常のアイテムを格納する配列
+    const normalItems: SidebarItem[] = [];
 
     fs.readdirSync(absoluteDir).forEach((file: string) => {
         const filePath = path.join(absoluteDir, file);
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
-            const subDirItems = generateSidebar(filePath, baseDir);
+            const subDirItems = generateSidebar(
+                filePath,
+                baseDir,
+                priorityFolder
+            );
             if (subDirItems.length > 0) {
-                sidebar.push({
-                    text: file,
-                    items: subDirItems,
-                });
+                // 優先フォルダかどうかを判定し、対応する配列にアイテムを追加
+                if (file.indexOf(priorityFolder) > -1) {
+                    priorityItems.push({
+                        text: file,
+                        items: subDirItems,
+                    });
+                } else {
+                    normalItems.push({
+                        text: file,
+                        items: subDirItems,
+                    });
+                }
             }
         } else if (stat.isFile() && file.endsWith(".md")) {
             const content = fs.readFileSync(filePath, "utf-8");
@@ -69,13 +91,25 @@ function generateSidebar(dir: string, baseDir: string): SidebarItem[] {
                     file.replace(/\.md$/, ".html")
                 );
                 const link = `/${relativePath}`;
-                sidebar.push({
-                    text: titleMatch[1],
-                    link,
-                });
+
+                // 優先フォルダのアイテムかどうかを判定し、対応する配列にアイテムを追加
+                if (dir === priorityFolder) {
+                    priorityItems.push({
+                        text: titleMatch[1],
+                        link,
+                    });
+                } else {
+                    normalItems.push({
+                        text: titleMatch[1],
+                        link,
+                    });
+                }
             }
         }
     });
+
+    // 優先フォルダのアイテムを優先して追加し、通常のアイテムを後に追加
+    sidebar.push(...priorityItems, ...normalItems);
 
     return sidebar;
 }
