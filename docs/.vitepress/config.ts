@@ -1,7 +1,9 @@
 import { defineConfig } from "vitepress";
 const containerMdExtend = require("./plugins/md/index.js");
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import axios from 'axios';
+
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -18,7 +20,6 @@ export default defineConfig({
             );
         },
     },
-
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
@@ -34,6 +35,7 @@ export default defineConfig({
         },
     },
 });
+
 
 interface SidebarItem {
     text: string;
@@ -113,3 +115,4 @@ function generateSidebar(
 
     return sidebar;
 }
+

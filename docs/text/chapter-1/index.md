@@ -1,10 +1,8 @@
 <script setup>
-import MyComponent from '/.vitepress/components/sample.vue' // コンポーネントをインポートする
+import MyComponent from '/.vitepress/components/sample.vue'
 </script>
 
 # テスト
 [card](https://q.trap.jp/channels/random/wasure)
 
-<MyComponent url="https://twitter.com/home"/> <!-- コンポーネントを表示する -->
-
-
+<MyComponent url="https://namegen.jp/" />

@@ -1,61 +1,61 @@
 <template>
     <div>
         <h2 class="mt-4">test</h2>
-        <p>{{ variable }}</p>
-        <div class="bg-white rounded-lg shadow-md p-4">
-            <a :href="link" class="flex items-start space-x-4">
-                <img :src="OGP.image" class="w-28 h-28 rounded-md object-cover mt-1" />
+        <p v-if="ogp && isBrowser" class="text-light-text-primary dark:text-dark-text-primary">{{ url }} ogp</p>
+        <div v-if="ogp && isBrowser" class="bg-light-back-primary dark:bg-gray-800 rounded-lg shadow-md p-4">
+            <a v-if="ogp && url" :href="url" class="flex items-start space-x-4">
+                <img v-if="ogp.image" :src="ogp.image" class="w-28 h-28 rounded-md object-cover mt-1" />
                 <div>
-                    <h3 class="font-semibold text-light-text-primary">{{ OGP.title }}</h3>
-                    <div v-if="description !== ''">
-                        <p class="text-light-text-primary">{{ OGP.description }}</p>
+                    <h3 class="font-semibold text-light-text-primary dark:text-dark-text-primary">{{ ogp.title }}</h3>
+                    <div v-if="ogp.description !== ''">
+                        <p class="text-light-text-primary dark:text-dark-text-primary">{{ ogp.description }}</p>
                     </div>
                 </div>
             </a>
         </div>
+        <div v-else class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+            <a :href="url" class="flex flex-col items-start justify-start">
+                <p class="font-semibold text-light-text-primary dark:text-dark-text-primary text-2xl">{{ url }}</p>
+                <p class="text-light-text-primary dark:text-dark-text-primary text-sm mt-2">ogpが取得できなかったのごめんね</p>
+            </a>
+        </div>
     </div>
 </template>
-  
+
+
+
+
 <script>
 import axios from 'axios';
-import cheerio from 'cheerio';
 
 export default {
-    props: ['url'],
+    props: {
+        url: {
+            type: String,
+            default: null,
+        }
+    },
     data() {
         return {
-            OGP: {},
+            ogp: null,
+            isBrowser: false,
         };
     },
-    computed: {
-        link() {
-            return this.OGP.url || this.url;
-        },
-        variable() {
-            return 'Sample Variable';
-        },
-    },
-    mounted() {
-        this.fetchOGPData();
+    async mounted() {
+        this.isBrowser = true;
+        this.ogp = await this.fetchOGP(this.url);
+        console.log(this.ogp)
     },
     methods: {
-        async fetchOGPData() {
+        async fetchOGP(url) {
             try {
-                const response = await axios.get(this.url);
-                const html = response.data;
-                const $ = cheerio.load(html);
-
-                this.OGP = {
-                    url: $('meta[property="og:url"]').attr('content') || this.url,
-                    title: $('meta[property="og:title"]').attr('content') || 'No Title',
-                    description: $('meta[property="og:description"]').attr('content') || '',
-                    image: $('meta[property="og:image"]').attr('content') || '',
-                };
+                const response = await axios.get('/api/ogp', { params: { url } });
+                return response.data;
             } catch (error) {
-                console.error('Error fetching OGP data:', error);
+                console.error('Error fetching OGP:', error);
+                return null;
             }
-        },
-    },
-};
+        }
+    }
+}
 </script>
-  
