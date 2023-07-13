@@ -2,9 +2,21 @@ const express = require('express');
 const ogs = require('open-graph-scraper');
 const app = express();
 
+const ogpCache = {}; // OGPデータを格納するオブジェクト
+const cacheDuration = 3600000*24; // キャッシュの有効期間（ミリ秒単位、24時間）
+
+
 
 app.get('/api/ogp', async (req, res) => {
-    const url = req.query.url; // パラメータとしてOGPを取得するURLを受け取る
+    const url = req.query.url;
+
+    // キャッシュに保存されている場合、キャッシュを返す
+    if (ogpCache[url] && Date.now() - ogpCache[url].timestamp < cacheDuration) {
+        console.log('Returning cached OGP data');
+        res.json(ogpCache[url].data);
+        return;
+    }
+
     const options = { url: url };
     ogs(options)
         .then((data) => {
@@ -13,7 +25,6 @@ app.get('/api/ogp', async (req, res) => {
                 console.error('Error fetching OGP:', error);
                 res.status(500).json({ error: 'Failed to fetch OGP' });
             } else {
-                console.log('result:', result); // This contains all of the Open Graph results
                 const ogImage = result.ogImage;
                 const twitterImage = result.twitterImage;
 
@@ -29,7 +40,14 @@ app.get('/api/ogp', async (req, res) => {
                     description: result.ogDescription,
                     image: imageUrl,
                 };
-                console.log('ogpData:', ogpData);
+
+                // キャッシュに保存
+                ogpCache[url] = {
+                    data: ogpData,
+                    timestamp: Date.now(),
+                };
+
+                console.log('Fetched OGP data:', ogpData);
                 res.json(ogpData);
             }
         })
