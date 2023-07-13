@@ -9,8 +9,10 @@ module.exports = {
             }
         }
     },
-    // build: {
-    //     // ビルド環境の設定
-    //     // ...
-    // }
+    build: {
+        // ビルド環境の設定
+        'api':{
+            target: 'https://vitepress-lecture-template.trap.show:3000'
+        }
+    }
 }

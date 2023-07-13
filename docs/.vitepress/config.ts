@@ -2,7 +2,6 @@ import { defineConfig } from "vitepress";
 const containerMdExtend = require("./plugins/md/index.js");
 import fs from "fs";
 import path from "path";
-import axios from 'axios';
 
 
 // https://vitepress.dev/reference/site-config

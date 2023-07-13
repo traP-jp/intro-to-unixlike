@@ -5,4 +5,4 @@ import MyComponent from '/.vitepress/components/sample.vue'
 # テスト
 [card](https://q.trap.jp/channels/random/wasure)
 
-<MyComponent url="https://namegen.jp/" />
+<MyComponent url="https://trap.jp/" />
