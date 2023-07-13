@@ -1,8 +1,8 @@
 <script setup>
-import MyComponent from '/.vitepress/components/sample.vue'
+import OGPComponent from '/.vitepress/components/ogp.vue'
 </script>
 
 # テスト
 [card](https://q.trap.jp/channels/random/wasure)
 
-<MyComponent url="https://trap.jp/" />
+<OGPComponent url="https://trap.jp/" />

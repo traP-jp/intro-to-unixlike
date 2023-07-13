@@ -1,7 +1,5 @@
 <template>
     <div>
-        <h2 class="mt-4">test</h2>
-        <p v-if="ogp && isBrowser" class="text-light-text-primary dark:text-dark-text-primary">{{ url }} ogp</p>
         <div v-if="ogp && isBrowser" class="bg-light-back-primary dark:bg-gray-800 rounded-lg shadow-md p-4">
             <a v-if="ogp && url" :href="url" class="flex items-start space-x-4">
                 <img v-if="ogp.image" :src="ogp.image" class="w-28 h-28 rounded-md object-cover mt-1" />
