@@ -5,13 +5,22 @@ const containerMdExtend = require("./plugins/md/index.js");
 import fs from "fs";
 import path from "path";
 
+const ogDescription = "Lecture site Template";
+const ogImage = "/assets/image/logo.png";
+const ogTitle = "Lecture Template Project";
+const ogUrl = "https://vitepress-lecture-template.trap.show/";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     lang: "jp",
-    title: "Lecture Template Project",
-    description: "Lecture Site Template",
+    title: ogTitle,
+    description: ogDescription,
     head: [
-        ['meta', { property: 'og:image', content: "/assets/image/logo.png" }]
+        ["meta", { property: "og:type", content: "website" }],
+        ["meta", { property: "og:title", content: ogTitle }],
+        ["meta", { property: "og:image", content: ogImage }],
+        ["meta", { property: "og:url", content: ogUrl }],
+        ["meta", { property: "og:description", content: ogDescription }],
     ],
     markdown: {
         lineNumbers: true,
