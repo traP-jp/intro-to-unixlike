@@ -10,6 +10,9 @@ export default defineConfig({
     lang: "jp",
     title: "Lecture Template Project",
     description: "Lecture Site Template",
+    head: [
+        ['meta', { property: 'og:image', content: "/assets/image/logo.png" }]
+    ],
     markdown: {
         lineNumbers: true,
         config: (md) => {
