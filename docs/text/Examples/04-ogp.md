@@ -35,6 +35,6 @@
 
 - {fork_repository}-serverというshowcaseアプリを起動する必要があります。
 
-詳しくはプロジェクトのsetupを参照してください。
+詳しくは[配信の仕方](/text/chapter-1/#配信)を参照してください。
 
 また、具体的な設定は[このプロジェクトの設定](https://ns.trap.jp/repos/e20c2f996b5d70917b8cfd)も参考にしてください。

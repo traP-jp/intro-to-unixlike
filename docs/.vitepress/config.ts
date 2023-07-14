@@ -1,8 +1,9 @@
 import { defineConfig } from "vitepress";
+import mathjax3 from "markdown-it-mathjax3";
+const customElements = ["mjx-container"];
 const containerMdExtend = require("./plugins/md/index.js");
 import fs from "fs";
 import path from "path";
-
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -17,16 +18,24 @@ export default defineConfig({
                 "spoiler",
                 containerMdExtend(md)
             );
+            md.use(mathjax3);
+        },
+    },
+    vue: {
+        template: {
+            compilerOptions: {
+                isCustomElement: (tag) => customElements.includes(tag),
+            },
         },
     },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: "Home", link: "/" },
-            { text: "Examples", link: "/text/Examples/image" },
-        ],
+            { text: "Examples", link: "/text/Examples/01-image" },
+        ], //画面右上の案内表示
         socialLinks: [
-            { icon: "github", link: "https://github.com/vuejs/vitepress" },
+            { icon: "github", link: "https://github.com/vuejs/vitepress" }, //githubへのリンク表示ができます
         ],
         sidebar: generateSidebar("text", "docs", "chapter"),
         search: {
@@ -34,7 +43,6 @@ export default defineConfig({
         },
     },
 });
-
 
 interface SidebarItem {
     text: string;
@@ -114,4 +122,3 @@ function generateSidebar(
 
     return sidebar;
 }
-

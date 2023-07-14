@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="ogp && isBrowser" class="bg-light-back-primary dark:bg-gray-800 rounded-lg shadow-md p-4">
+        <div class="bg-light-back-primary dark:bg-dark-back-primary rounded-lg shadow-md p-4">
             <a v-if="ogp && url" :href="url" class="flex items-start space-x-4">
                 <img v-if="ogp.image" :src="ogp.image" class="w-28 h-28 rounded-md object-cover mt-1" />
                 <div>
@@ -10,9 +10,7 @@
                     </div>
                 </div>
             </a>
-        </div>
-        <div v-else class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-            <a :href="url" class="flex flex-col items-start justify-start">
+            <a v-else :href="url" class="flex flex-col items-start justify-start">
                 <p class="font-semibold text-light-text-primary dark:text-dark-text-primary text-2xl">{{ url }}</p>
                 <p class="text-light-text-primary dark:text-dark-text-primary text-sm mt-2">ogpが取得できなかったのごめんね</p>
             </a>
