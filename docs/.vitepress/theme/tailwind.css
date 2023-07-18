@@ -74,11 +74,11 @@
 .dark {
 
     /* dark theme */
-    --background: #1e1e20;
-    --background-effect: #252529;
-    --background-effect-light: #313136;
-    --ui-line: theme(colors.stone.600/68%);
-    --ui-line-fade: theme(colors.stone.600/32%);
+    --background: theme(colors.dark-back-primary);
+    --background-effect: theme(colors.dark-back-secondary);
+    --background-effect-light: theme(colors.dark-back-tertiary);
+    --ui-line: theme(colors.stone.300/68%);
+    --ui-line-fade: theme(colors.stone.300/32%);
     --vp-c-base: theme(colors.primary-600);
     --vp-c-base-light: theme(colors.primary-500);
     --vp-c-base-lighter: theme(colors.primary-400);
@@ -103,7 +103,7 @@
 
     --vp-c-border: var(--ui-line);
     --vp-c-divider: var(--ui-line-fade);
-    --vp-c-gutter: #000000;
+    --vp-c-gutter: var(--ui-line-fade);
 
     --vp-c-neutral: var(--vp-c-white);
     --vp-c-neutral-inverse: var(--vp-c-black);
