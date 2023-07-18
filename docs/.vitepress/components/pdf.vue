@@ -15,7 +15,8 @@
                     前のページ</button>
             </div>
             <div class="mx-2"></div>
-            <div class="bg-light-back-primary dark:bg-dark-back-primary text-light-ui-primary dark:text-dark-ui-primary font-semibold py-2 px-4  rounded shadow">
+            <div
+                class="bg-light-back-primary dark:bg-dark-back-primary text-light-ui-primary dark:text-dark-ui-primary font-semibold py-2 px-4  rounded shadow">
                 {{ currentPage }} / {{ totalPages }}</div>
             <div class="mx-2"></div>
             <div v-if="currentPage == totalPages" class="text-light-ui-secondary dark:text-dark-ui-secondary opacity-50">
@@ -35,8 +36,11 @@
 
 
 <script>
-import VuePdfEmbed from 'vue-pdf-embed'
+import { defineClientComponent } from 'vitepress'
 
+const VuePdfEmbed = defineClientComponent(() => {
+    return import('vue-pdf-embed')
+})
 
 export default {
     components: {
