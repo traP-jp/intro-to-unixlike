@@ -25,6 +25,6 @@ features: #トップページに並んでいるボタンです。コピペで使
       link: /text/chapter-1/index.md
     - title: 2. 機能の具体例
       details: 特殊な機能の具体的な使い方の詳細
-      link: /text/Example/01-image.md
+      link: /text/Examples/01-image.md
 
 ---
