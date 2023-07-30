@@ -1,6 +1,7 @@
 const express = require('express');
 const ogs = require('open-graph-scraper');
 const app = express();
+const userAgent ='bot'
 
 const ogpCache = {}; // OGPデータを格納するオブジェクト
 const cacheDuration = 3600000*24; // キャッシュの有効期間（ミリ秒単位、24時間）
@@ -17,7 +18,7 @@ app.get('/api/ogp', async (req, res) => {
         return;
     }
 
-    const options = { url: url };
+    const options = { url: url ,fetchOptions: { headers: { 'user-agent': userAgent } }};
     ogs(options)
         .then((data) => {
             const { error, result } = data;

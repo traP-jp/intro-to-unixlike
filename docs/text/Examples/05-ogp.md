@@ -31,7 +31,6 @@
 
 この機能を利用する際には、次の点に注意してください。
 - 一部のサイトでは、OGPのデータが表示されない場合があります。
-<OGPComponent url="https://twitter.com/" />
 
 - {fork_repository}-serverというshowcaseアプリを起動する必要があります。
 
