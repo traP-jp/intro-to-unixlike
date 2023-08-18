@@ -27,6 +27,9 @@
 3. これでリンクカードが挿入されます。
 <OGPComponent url="https://trap.jp/" />
 
+4. 例
+<OGPComponent url="https://twitter.com/traPtitech" />
+
 ## リンクカードの挿入についての注意点
 
 この機能を利用する際には、次の点に注意してください。
