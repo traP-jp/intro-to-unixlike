@@ -26,9 +26,10 @@ print("Hello, World!")
 部分的に外部ファイルを読み込みたい場合は
 ````
 ```python
-<!--@include: @/public/assets/other/sample.py{3,}-->
+<!--@include: @[/public/assets/other/sample.py]{開始行数,}-->
 ```
 ````
+
 のように書くと、
 ```python=3
 <!--@include: @/public/assets/other/sample.py{3,}-->
