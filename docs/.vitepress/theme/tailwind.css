@@ -8,6 +8,7 @@
 
 :root {
     /* light theme */
+    --vp-code-line-highlight-color: theme(colors.dark-accent-focus/15%);
     --background: theme(colors.light-back-primary);
     --background-effect: theme(colors.light-back-secondary);
     --background-effect-light: #f9f9fa;
