@@ -1,6 +1,6 @@
-// vite.config.js
+import type { UserConfig } from 'vite'
 
-module.exports = {
+const config: UserConfig =  {
     server: {
         proxy: {
             // 開発環境のプロキシ設定
@@ -14,3 +14,5 @@ module.exports = {
     //     // ...
     // }
 }
+
+export default config;

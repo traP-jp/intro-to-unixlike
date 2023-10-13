@@ -1,7 +1,8 @@
 import { defineConfig } from "vitepress";
 import mathjax3 from "markdown-it-mathjax3";
 const customElements = ["mjx-container"];
-const containerMdExtend = require("./plugins/md/index.js");
+import containerMdExtend from './plugins/md'
+import markdownItContainer from "markdown-it-container";
 import fs from "fs";
 import path from "path";
 
@@ -26,7 +27,7 @@ export default defineConfig({
         lineNumbers: true,
         config: (md) => {
             md.use(
-                require("markdown-it-container"),
+                markdownItContainer,
                 "spoiler",
                 containerMdExtend(md)
             );
