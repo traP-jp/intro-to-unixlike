@@ -30,9 +30,10 @@ print("Hello, World!")
 ```
 ````
 のように書くと、
-```js=3
-<!--@include: @/public/assets/other/sample.py{3,4}-->
+```python=3
+<!--@include: @/public/assets/other/sample.py{3,}-->
 ```
+のようになります。
 
 ## 具体例
 いくつか機能があるので、それを紹介します。
