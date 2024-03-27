@@ -2,12 +2,9 @@
 layout: home
 
 hero:
-    name: "template"
-    text: "test template"
-    tagline: "講習会資料テンプレート"
-    image:
-        alt: "logo" #トップページに表示される画像です
-        src: /assets/image/logo.png
+    name: "intro-to-Unixlike"
+    text: "Introduction to Unix-like OS"
+    tagline: "traP 0->1 / Unix系講習会 テキスト"
     actions:
         - theme: brand
           text: テキストを開く
@@ -17,8 +14,8 @@ hero:
           link: /text/chapter-0/technical_support/tech_1.md
 
 features: #トップページに並んでいるボタンです。コピペで使ってください。
-    - title: 0. 基本的な使い方について
-      details: このテンプレートについての説明
+    - title: 0. はじめに
+      details: この講習会と資料について
       link: /text/chapter-0/index.md
     - title: 1. 具体的な使い方
       details: このテンプレートについての使い方
