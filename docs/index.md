@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-    name: "intro-to-Unixlike"
+    name: "Intro-to-Unixlike"
     text: "Introduction to Unix-like OS"
     tagline: "traP 0->1 / Unix系講習会 テキスト"
     actions:
