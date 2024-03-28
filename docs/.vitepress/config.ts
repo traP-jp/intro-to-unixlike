@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import mathjax3 from "markdown-it-mathjax3";
+import {withMermaid} from "vitepress-plugin-mermaid";
 const customElements = ["mjx-container"];
 import containerMdExtend from './plugins/md'
 import markdownItContainer from "markdown-it-container";
@@ -12,7 +13,7 @@ const ogTitle = "Lecture Template Project";
 const ogUrl = "https://vitepress-lecture-template.trap.show/";
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid({
     lang: "jp",
     title: ogTitle,
     description: ogDescription,
